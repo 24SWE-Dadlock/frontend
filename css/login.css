@@ -1,0 +1,68 @@
+.first__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transform: translateY(-10%);
+}
+
+.dad__mark {
+    width: 278px;
+    height: 275px;
+    border-radius: 20px; /* 이미지 모서리를 둥글게 */
+}
+
+.dad__title {
+    font-size: 96px; /* 폰트 크기 */
+    font-family: 'jsMath-cmr10', serif; /* 폰트 패밀리 */
+    color: #0B43D2; /* 폰트 색상 */
+    margin-top: 1rem; /* 상단 마진 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 드롭 섀도우 */
+    font-weight: bold;
+}
+
+.login-button {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 10px; /* 버튼 모서리를 둥글게 */
+    border: 2px solid #A9A9A9; /* 검정 회색 테두리, 두께 2px */
+    background-color: white; /* 구글 색상 예시 */
+    color: #000; /* 텍스트 색상 */
+}
+
+.button-icon {
+    width: 24px; /* 아이콘 크기 */
+    height: 24px;
+    margin-right: 10px; /* 아이콘과 텍스트 사이 여백 */
+}
+
+.bottom__container {
+    width: 100%; /* 박스가 화면의 전체 너비를 차지하도록 설정 */
+    height: 117px; /* 박스의 높이 */
+    background-color: #F3F1F1; /* 박스 배경색 */
+    border-top: 2px solid #D3D0D0; /* 상단 테두리 색상 및 두께 */
+    position: absolute; /* 절대 위치 설정 */
+    bottom: 0; /* 화면의 맨 아래에 위치하도록 설정 */
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+}
+
+.gachon__image {
+    width: 70px; /* 이미지 너비 */
+    height: 54px; /* 이미지 높이 */
+    margin-right: 20px; /* 이미지와 텍스트 사이 여백 */
+}
+
+.bottom__text {
+    font-family: 'Bungee', sans-serif; /* 폰트 패밀리 */
+    font-size: 32px; /* 폰트 크기 */
+    color: #014F9E; /* 폰트 색상 */
+    font-weight: bold;
+}
