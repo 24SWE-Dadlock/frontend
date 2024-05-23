@@ -1,5 +1,3 @@
 FE Developers : 이우진, 황호빈, 이형록
 
-login page 완료
-
-24/05/19 -> selection_addUrl 부분구현 
+-> 3명이서 한 코드 합쳐놨어요~
