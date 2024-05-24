@@ -30,6 +30,46 @@
             </div>
         </div>
     </div>
-    <script src="../javascript/addUrl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = 'myToken';
+
+            const config = {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            axios.get('https://jsonplaceholder.typicode.com/posts', { headers: config.headers })
+                .then(function (response) {
+                    if (response.data.status === "OK") {
+                        const urlTableBody = document.getElementById('urlTableBody');
+                        response.data.data.forEach((urlEntry, index) => {
+                            const row = document.createElement('tr');
+                            const indexCell = document.createElement('td');
+                            const urlCell = document.createElement('td');
+
+                            indexCell.textContent = index + 1;
+                            urlCell.textContent = urlEntry.appUrl;
+
+                            row.appendChild(indexCell);
+                            row.appendChild(urlCell);
+                            urlTableBody.appendChild(row);
+                        });
+                    } else {
+                        alert(response.data.message);
+                    }
+                })
+                .catch(function (error) {
+                    if (error.response && error.response.data && error.response.data.code === 403) {
+                        alert(error.response.data.message);
+                    } else {
+                        console.log(error);
+                    }
+                });
+        });
+    </script>
 </body>
 </html>
