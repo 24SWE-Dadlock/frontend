@@ -1,0 +1,113 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffffff; /* 배경 색상을 흰색으로 설정 */
+    position: relative;
+}
+
+.rounded-rectangle {
+    width: 966px; /* 너비 */
+    height: 816px; /* 높이 */
+    background-color: #ffffff; /* 배경 색상을 흰색으로 설정 */
+    border: 7px solid #5785FB; /* 파란색 테두리와 두께 설정 */
+    border-radius: 20px; /* 둥근 모서리 설정 */
+    box-sizing: border-box; /* 테두리 두께를 포함하여 크기 설정 */
+    position: relative; /* 내부 요소의 위치를 절대값으로 설정 가능하게 함 */
+}
+
+.dad-image {
+    position: absolute;
+    bottom: 20px; /* 아래에서 20px 위로 */
+    right: 20px; /* 오른쪽에서 20px 왼쪽으로 */
+    width: 234px; /* 이미지의 너비 설정 */
+    height: 246px; /* 이미지의 높이 설정 */
+}
+
+.input__container {
+    position: absolute;
+    top: 40%; /* 세로 중앙에서 위로 이동 */
+    left: 45%; /* 가로 중앙 정렬 */
+    transform: translate(-50%, -50%); /* 중앙 위치 조정 */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 입력 상자 간의 간격 설정 */
+    width: 721px; /* 너비 설정 */
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* 이미지와 입력 상자 간의 간격 설정 */
+}
+
+.input-box {
+    flex: 1; /* 입력 상자의 너비를 가용 공간에 맞춤 */
+    height: 59px; /* 높이 설정 */
+    border: 7px solid #0B43D2; /* 파란색 테두리와 두께 설정 */
+    box-sizing: border-box; /* 테두리 두께를 포함하여 크기 설정 */
+    padding: 10px; /* 내부 여백 설정 */
+    font-size: 20px; /* 글꼴 크기 설정 */
+}
+
+.add__button {
+    position: absolute;
+    top: 75%; /* 인풋 박스 아래로 더 이동 */
+    left: 50%; /* 가로 중앙 정렬 */
+    transform: translate(-50%, -50%); /* 중앙 위치 조정 */
+    width: 183px; /* 너비 설정 */
+    height: 69px; /* 높이 설정 */
+    background-color: #3B6DEC; /* 버튼 배경색 설정 */
+    color: #FFFFFF; /* 텍스트 색상 설정 */
+    border: none; /* 기본 테두리 제거 */
+    border-radius: 20px; /* 둥근 모서리 설정 */
+    font-size: 32px; /* 글꼴 크기 설정 */
+    cursor: pointer; /* 커서 설정 */
+}
+
+.add__button:hover {
+    border: 4px solid #3B6DEC; /* 테두리 색상을 버튼 배경색으로 설정 */
+    background-color: #FFFFFF; /* 버튼 배경색을 흰색으로 설정 */
+    color: #3B6DEC; /* 텍스트 색상을 파란색으로 설정 */
+}
+
+.side-buttons {
+    position: absolute;
+    top: 20%; /* 상자의 상단에서부터의 위치 */
+    right: -100px; /* 버튼이 상자 오른쪽 가장자리에 붙도록 설정 */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* 버튼 간의 간격 설정 */
+}
+
+.side-button {
+    width: 130px; /* 버튼 너비 */
+    height: 100px; /* 버튼 높이 */
+    background-color: #3B6DEC; /* 버튼 배경색 설정 */
+    color: #FFFFFF; /* 텍스트 색상 설정 */
+    border: none; /* 테두리 제거 */
+    border-radius: 15px; /* 둥근 모서리 설정 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 입체 효과를 위한 그림자 설정 */
+    font-size: 25px; /* 글꼴 크기 설정 */
+    cursor: pointer; /* 커서 설정 */
+}
+
+.side-button:hover {
+    background-color: #5785FB; /* 버튼 배경색 변경 */
+}
+
+.side-button.inactive {
+    background-color: #FFFFFF; /* 비활성화된 버튼 배경색 */
+    color: #3B6DEC; /* 비활성화된 버튼 텍스트 색상 */
+    border: 2px solid #3B6DEC; /* 비활성화된 버튼 테두리 색상 */
+    cursor: not-allowed; /* 비활성화된 버튼 커서 설정 */
+}
+
+.blockUrl__Image, .time__Image, .quiz__Image {
+    width: 135px; /* 가로 크기 설정 */
+    height: 135px; /* 세로 크기 설정 */
+}
+

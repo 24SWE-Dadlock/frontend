@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DadLock</title>
+    <link rel="stylesheet" href="../css/quiz_ox.css">
+</head>
+
+<body>
+    <div class="rounded-rectangle">
+        <img src="../img/quiz.png" alt="Quiz Image" class="quiz-image">
+        <div class="question-container">
+            <div class="question-box" id="question"></div>
+            <!-- 문제 Title과 body를 위한 텍스트 칸 요망-->
+            <!-- 시사칸 추가할지 논의-->
+        </div>
+        <div class="answer-container">
+            <button class="answer-box" id="option-o" onclick="sendAnswer('O')">O</button>
+            <button class="answer-box" id="option-x" onclick="sendAnswer('X')">X</button>
+        </div>
+        <img src="../img/dad.png" alt="Dad Image" class="dad-image">
+    </div>
+</body>
+
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+    const storedData = localStorage.getItem('quizData');
+
+    if (storedData) {
+        const quizData = JSON.parse(storedData);
+
+        // 데이터 처리
+        const question = quizData.data.question;
+        const subject = quizData.data.subject;
+
+        // 화면에 동적으로 텍스트 띄우기
+        document.getElementById('question').textContent = question;
+    }
+    else {
+        console.error('퀴즈 데이터를 찾을 수 없습니다.');
+    }
+
+    function sendAnswer(answer) {
+        // 퀴즈 API 엔드포인트 URL
+        const quizApiUrl = 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js';
+
+        const token = 'your_token_here';
+
+        // 요청 헤더 설정
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        };
+
+        const requestData = {
+            answer: answer
+        };
+
+        axios({
+            method: 'post', // 통신 방식
+            url: 'https://jsonplaceholder.typicode.com/posts', // 서버
+            headers: config.headers, // 요청 헤더 설정
+            data: requestData,
+        })
+        .then(function (response) {
+                const { code, message, data } = response.data;
+                // 요청이 성공한 경우 처리
+                //isCorrect가 true일 시 해당 URL로 접근하는 로직
+        })
+        .catch(function (error) {
+            const { status, data, message } = error.response.data;
+
+            if (status === 403) {
+            // 인증받지 않은 사용자
+            console.error(message);
+            } 
+            else if (status === 500) {
+            // 잘못된 요청
+            console.error(message);
+            } 
+            else {
+            console.error('알 수 없는 에러:', error);
+            }
+        });
+    }
+</script>

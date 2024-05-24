@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DadLock</title>
+    <link rel="stylesheet" href="../css/selection_list.css">
+</head>
+<body>
+    <div class="rounded-rectangle">
+        <img src="../img/dad.png" alt="Dad Image" class="dad-image">
+        <div class="side-buttons">
+            <button class="side-button" id="addButtonSide">추가</button>
+            <button class="side-button inactive" id="listButton">목록</button>
+        </div>
+        <div class="table-container">
+            <table id="urlTable">
+                <thead>
+                    <tr>
+                        <th>인덱스</th>
+                        <th>차단한 URL</th>
+                    </tr>
+                </thead>
+                <tbody id="urlTableBody">
+                    <!-- URL 리스트가 여기에 추가됩니다. -->
+                </tbody>
+            </table>
+            <div id="pagination">
+                <!-- 페이지 링크가 여기에 추가됩니다. -->
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = 'myToken';
+
+            const config = {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            axios.get('https://jsonplaceholder.typicode.com/posts', { headers: config.headers })
+                .then(function (response) {
+                    if (response.data.status === "OK") {
+                        const urlTableBody = document.getElementById('urlTableBody');
+                        response.data.data.forEach((urlEntry, index) => {
+                            const row = document.createElement('tr');
+                            const indexCell = document.createElement('td');
+                            const urlCell = document.createElement('td');
+
+                            indexCell.textContent = index + 1;
+                            urlCell.textContent = urlEntry.appUrl;
+
+                            row.appendChild(indexCell);
+                            row.appendChild(urlCell);
+                            urlTableBody.appendChild(row);
+                        });
+                    } else {
+                        alert(response.data.message);
+                    }
+                })
+                .catch(function (error) {
+                    if (error.response && error.response.data && error.response.data.code === 403) {
+                        alert(error.response.data.message);
+                    } else {
+                        console.log(error);
+                    }
+                });
+        });
+    </script>
+</body>
+</html>

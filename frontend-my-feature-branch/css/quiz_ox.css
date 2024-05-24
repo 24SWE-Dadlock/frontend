@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.rounded-rectangle {
+    width: 966px; /* 정사각형으로 만들어줄 너비 */
+    height: 816px; /* 정사각형으로 만들어줄 높이 */
+    background: #fff;
+    padding: 20px;
+    border: 2px solid #007bff;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.rounded-rectangle img.quiz-image {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: -30px;
+    left: calc(50% - 30px);
+}
+.question-container .question-box {
+    width: 900px; /* 박스의 너비를 설정 */
+    height: 500px; /* 네모칸의 높이를 늘립니다. */
+    padding: 20px; /* 내부 여백을 조정합니다. */
+    border: 2px solid #007bff; /* 테두리 스타일을 조정합니다. */
+    border-radius: 5px; /* 테두리의 모서리를 둥글게 만듭니다. */
+    margin: 0 auto; /* 가운데 정렬을 설정합니다. */
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 18px;
+    line-height: 100px; /* 텍스트의 세로 중앙 정렬을 위해 높이와 일치시킵니다. */
+    position: relative; /* 상대적 위치 설정 */
+}
+.question-container .question-box:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 24px;
+    color: #007bff;
+}
+.answer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.answer-box {
+    width: 100px;
+    height: 100px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 24px;
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.answer-box:hover {
+    background-color: #0056b3;
+}
+.submit-btn {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+}
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+.submit-btn:before {
+    content: '➔';
+    font-size: 20px;
+}
+.dad-image {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+}
