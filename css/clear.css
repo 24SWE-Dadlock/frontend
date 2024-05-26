@@ -1,0 +1,53 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+.first__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transform: translateY(-10%);
+}
+
+.dad__mark {
+    width: 278px;
+    height: 275px;
+    border-radius: 20px; /* 이미지 모서리를 둥글게 */
+}
+
+.dad__title {
+    font-size: 96px; /* 폰트 크기 */
+    font-family: 'jsMath-cmr10', serif; /* 폰트 패밀리 */
+    color: #0B43D2; /* 폰트 색상 */
+    margin-top: 1rem; /* 상단 마진 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 드롭 섀도우 */
+    font-weight: bold;
+}
+
+.unlock-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 10px; /* 버튼 모서리를 둥글게 */
+    background-color: #0056b3; /* 버튼 배경 색상 */
+    color: white; /* 텍스트 색상 */
+    border: none; /* 테두리 제거 */
+}
+
+.unlock-btn:hover {
+    background-color: #003d80; /* 호버 시 배경 색상 */
+}
+

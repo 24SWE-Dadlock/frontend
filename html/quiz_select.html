@@ -7,58 +7,18 @@
     <link rel="stylesheet" href="../css/quiz_select.css">
 </head>
 <body onload="fetchQuiz()">
-    <div class="rounded-rectangle">
-        <img src="../img/quiz.png" alt="Quiz Image" class="quiz-image">
-        <div class="question-container">
-            <div class="question-box" id="question"></div>
-        </div>
+    <div class="container">
+        <img src="../img/quiz.png" alt="Quiz Image" class="icon-top">
+        <div class="question">Q.</div>
+        <div class="question-box" id="question"></div>
         <div class="answer-container">
             <button class="answer-button" onclick="selectAnswer(this)">답안 1</button>
             <button class="answer-button" onclick="selectAnswer(this)">답안 2</button>
             <button class="answer-button" onclick="selectAnswer(this)">답안 3</button>
             <button class="answer-button" onclick="selectAnswer(this)">답안 4</button>
+            <button class="answer-button" onclick="selectAnswer(this)">답안 5</button>
         </div>
-        <img src="../img/dad.png" alt="Dad Image" class="dad-image">
+        <img src="../img/dad.png" alt="Dad Image" class="icon-bottom-right">
     </div>
 </body>
 </html>
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-<script>
-    function fetchQuiz() {
-        // 퀴즈 API 엔드포인트 URL
-        const quizApiUrl = 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js';
-
-        const token = 'your_token_here';
-        
-        // 요청 헤더 설정
-        const config = {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-            }
-        };
-
-        axios({
-        method: 'get', // 통신 방식
-        url: 'https://jsonplaceholder.typicode.com/posts', // 서버
-        headers: config.headers, // 요청 헤더 설정
-        })
-        .then(function (response) {
-            // 요청이 성공한 경우 처리
-            console.log(response.data);
-        })
-        .catch(function (error) {
-            // 요청이 실패한 경우 처리
-            console.log(error);
-        });
-    }
-
-    function selectAnswer(button) {
-        const selectedAnswer = button.textContent;
-        console.log('Selected Answer:', selectedAnswer);
-        // 여기에 선택한 답을 처리하는 코드를 추가하세요.
-        alert(`선택한 답: ${selectedAnswer}`);
-    }
-</script>

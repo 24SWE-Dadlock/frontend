@@ -1,88 +1,78 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #FFFFFF;
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
+    background-color: #FFFFFF;
+    font-family: Arial, sans-serif;
 }
-.rounded-rectangle {
-    width: 966px; /* 정사각형으로 만들어줄 너비 */
-    height: 816px; /* 정사각형으로 만들어줄 높이 */
-    background: #fff;
-    padding: 20px;
-    border: 2px solid #007bff;
+
+.container {
+    width: 400px;
+    height: 600px;
+    border: 2px solid #0056b3;
     border-radius: 15px;
+    padding: 20px;
+    background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
     position: relative;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
-.rounded-rectangle img.quiz-image {
+
+.icon-top {
     width: 60px;
-    height: 60px;
     position: absolute;
-    top: -30px;
-    left: calc(50% - 30px);
-}
-.question-container .question-box {
-    width: 900px; /* 박스의 너비를 설정 */
-    height: 500px; /* 네모칸의 높이를 늘립니다. */
-    padding: 20px; /* 내부 여백을 조정합니다. */
-    border: 2px solid #007bff; /* 테두리 스타일을 조정합니다. */
-    border-radius: 5px; /* 테두리의 모서리를 둥글게 만듭니다. */
-    margin: 0 auto; /* 가운데 정렬을 설정합니다. */
-    box-sizing: border-box;
-    text-align: center;
-    font-size: 18px;
-    line-height: 100px; /* 텍스트의 세로 중앙 정렬을 위해 높이와 일치시킵니다. */
-    position: relative; /* 상대적 위치 설정 */
-}
-.question-container .question-box:before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: -30px;
+    top: -30px; 
     left: 50%;
     transform: translateX(-50%);
-    font-weight: bold;
-    font-size: 24px;
-    color: #007bff;
+}
+
+.question {
+    font-size: 2em;
+    color: #0056b3;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.question-box {
+    height: 180px;
+    width: 100%;
+    padding: 20px;
+    border: 2px solid #0056b3;
+    border-radius: 5px;
+    font-size: 1.2em;
+    box-sizing: border-box;
+    overflow-y: auto; /* 긴 질문에 대비해 스크롤바 추가 */
 }
 
 .answer-container {
     margin-top: 20px;
     display: flex;
-    justify-content: space-around;
-    width: 100%;
+    flex-direction: column;
+    gap: 10px; /* 버튼 사이 간격 조정 */
 }
+
 .answer-button {
-    width: 200px;
-    height: 70px;
-    background-color: #007bff;
+    width: 100%;
+    height: 50px;
+    background-color: #0056b3;
     color: #fff;
-    border: 2px solid #007bff;
+    border: 2px solid #0056b3;
     border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
+    font-size: 1em;
     cursor: pointer;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, box-shadow 0.3s;
 }
+
 .answer-button:hover {
-    background-color: #0056b3;
+    background-color: #003d80;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.dad-image {
-    width: 60px;
-    height: 60px;
+.icon-bottom-right {
     position: absolute;
-    bottom: -30px;
-    right: -30px;
+    bottom: 10px;
+    right: 20px;
+    width: 60px;
 }
