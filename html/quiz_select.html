@@ -6,19 +6,89 @@
     <title>DadLock</title>
     <link rel="stylesheet" href="../css/quiz_select.css">
 </head>
-<body onload="fetchQuiz()">
+<body>
     <div class="container">
         <img src="../img/quiz.png" alt="Quiz Image" class="icon-top">
         <div class="question">Q.</div>
         <div class="question-box" id="question"></div>
         <div class="answer-container">
-            <button class="answer-button" onclick="selectAnswer(this)">답안 1</button>
-            <button class="answer-button" onclick="selectAnswer(this)">답안 2</button>
-            <button class="answer-button" onclick="selectAnswer(this)">답안 3</button>
-            <button class="answer-button" onclick="selectAnswer(this)">답안 4</button>
-            <button class="answer-button" onclick="selectAnswer(this)">답안 5</button>
+            <button class="answer-button" id="optionA" onclick="selectAnswer('optionA')">답안 1</button>
+            <button class="answer-button" id="optionB" onclick="selectAnswer('optionB')">답안 2</button>
+            <button class="answer-button" id="optionC" onclick="selectAnswer('optionC')">답안 3</button>
+            <button class="answer-button" id="optionD" onclick="selectAnswer('optionD')">답안 4</button>
+            <button class="answer-button" id="optionE" onclick="selectAnswer('optionE')">답안 5</button>
         </div>
         <img src="../img/dad.png" alt="Dad Image" class="icon-bottom-right">
     </div>
 </body>
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+        window.onload = function() {
+            // 로컬 스토리지에서 quizId와 quizQuestion, options을 가져옵니다.
+            const quizId = localStorage.getItem('quizId');
+            const question = localStorage.getItem('quizQuestion');
+            const optionA = localStorage.getItem('optionA');
+            const optionB = localStorage.getItem('optionB');
+            const optionC = localStorage.getItem('optionC');
+            const optionD = localStorage.getItem('optionD');
+            const optionE = localStorage.getItem('optionE');
+            
+            // quizId와 question이 존재할 경우 HTML 요소를 업데이트합니다.
+            if (question) {
+                document.getElementById('question').innerText = question;
+            }
+
+            // 옵션이 존재할 경우 버튼의 텍스트를 업데이트합니다.
+            if (optionA) {
+                document.getElementById('optionA').innerText = optionA;
+            }
+            if (optionB) {
+                document.getElementById('optionB').innerText = optionB;
+            }
+            if (optionC) {
+                document.getElementById('optionC').innerText = optionC;
+            }
+            if (optionD) {
+                document.getElementById('optionD').innerText = optionD;
+            }
+            if (optionE) {
+                document.getElementById('optionE').innerText = optionE;
+            }
+        }
+
+    function sendAnswer(answer) {
+            const token = sessionStorage.getItem('token'); // 토큰을 세션 스토리지에서 가져옴
+            const quizId = localStorage.getItem('quizId'); // 로컬 스토리지에서 quizId 가져옴
+
+            axios.post(`http://localhost:8080/quizzes/${quizId}/attempt`, {
+                answer: answer
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(function (response) {
+                if (response.data.code === 200) {
+                    alert('퀴즈 답변 성공: ' + (response.data.data.isCorrect ? '정답입니다!' : '오답입니다.'));
+                    //URL 차단 풀어서 해당 URL로 리다이렉션하는 코드
+                } else {
+                    alert('퀴즈 답변 실패: ' + response.data.message);
+                }
+            })
+            .catch(function (error) {
+                if (error.response) {
+                    if (error.response.status === 403) {
+                        alert('인증받지 않은 사용자입니다.');
+                    } else if (error.response.status === 500) {
+                        alert('퀴즈 조회 실패: ' + error.response.data.message);
+                    } else {
+                        alert('오류 발생: ' + error.response.data.message);
+                    }
+                } else {
+                    console.error('Error:', error.message);
+                }
+            });
+        }
+</script>

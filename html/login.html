@@ -5,17 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DadLock</title>
     <link rel="stylesheet" href="../css/login.css">
-    <script>
-        function goToDadLock(){
-            window.location.href = 'selection_addUrl.html'
-        }
-    </script>
 </head>
 <body>
     <div class="first__container">
         <img src="../img/dad.png" class="dad__mark">
         <div class="dad__title">DadLock</div>
-        <button class="login-button" onclick="goToDadLock()">
+        <button class="login-button" id="login_button">
             <img src="../img/google.png" class="button-icon" alt="Google icon">
             구글로 로그인하기
         </button>
@@ -26,3 +21,43 @@
     </div>
 </body>
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+    const loginButton = document.getElementById('login_button');
+
+    loginButton.addEventListener('click', () => {
+      socialLogin();
+    });
+
+    function socialLogin() {
+      const clientId = '694978020708-d1jf8m6160cjnkmoco1dmrg809msj57m.apps.googleusercontent.com';
+      const redirectUri = 'https://localhost:8080/login/oauth2/code/google';
+      const scope = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email';
+      const responseType = 'token';
+      const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=${responseType}`;
+
+      window.location.href = authUrl;
+    }
+
+    // Redirect URI 페이지에서 다음 코드를 사용하여 토큰을 처리합니다.
+    window.onload = function () {
+      const hash = window.location.hash;
+      if (hash) {
+        const token = new URLSearchParams(hash.substring(1)).get('access_token');
+        if (token) {
+          saveTokenSessionStorage(token);
+          goToAddUrl();
+        }
+      }
+    };
+
+    function goToAddUrl(){
+        window.location.href = 'selection_addUrl.html'
+    }
+
+    function saveTokenSessionStorage(token) {
+      sessionStorage.setItem('token', token);
+    }
+</script>

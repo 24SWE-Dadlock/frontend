@@ -10,10 +10,74 @@
     <div class="first__container">
         <img src="../img/dad.png" alt="Dad Image" class="dad__mark">
         <div class="dad__title">DadLock</div>
-        <button class="unlock-btn">해제하기</button>
+        <button class="unlock-btn" id="unlock_button">해제하기</button>
     </div>
 </body>
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+    const unlockButton = document.getElementById('unlock_button');
+
+    unlockButton.addEventListener('click', () => {
+        fetchQuiz();
+    });
+
+    function fetchQuiz() {
+        const token = sessionStorage.getItem('token'); // 토큰을 세션 스토리지에서 가져옴
+
+        axios.get('http://localhost:8080/quizzes', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(function (response) {
+                // 성공적인 응답 처리
+                if (response.data.status === "OK") {
+                    const quiz = response.data.data;
+                    localStorage.setItem('quizId', quiz.id);
+                    localStorage.setItem('quizQuestion', quiz.question);
+
+                    if (quiz.type === "MC") { //객관식
+                        localStorage.setItem('optionA', quiz.optionA);
+                        localStorage.setItem('optionB', quiz.optionB);
+                        localStorage.setItem('optionC', quiz.optionC);
+                        localStorage.setItem('optionD', quiz.optionD);
+                        localStorage.setItem('optionE', quiz.optionE);
+                        goToQuizSelect();
+                    } else if (quiz.type === "TF") { //참거짓
+                        goToQuizOx();
+                    } else if (quiz.type === "SA") { //주관식
+                        localStorage.setItem('optionA', quiz.optionA);
+                        goToQuizSubject();
+                    }
+                } else {
+                    alert('퀴즈를 불러오지 못했습니다.');
+                }
+            })
+            .catch(function (error) {
+                // 오류 처리
+                if (error.response && error.response.status === 403) {
+                    alert('인증받지 않은 사용자입니다.');
+                } else {
+                    console.error(error);
+                }
+            });
+    }
+
+    function goToQuizOx() {
+        window.location.href = 'quiz_ox.html';
+    }
+
+    function goToQuizSelect() {
+        window.location.href = 'quiz_select.html';
+    }
+
+    function goToQuizSubject() {
+        window.location.href = 'quiz_subject.html';
+    }
+</script>
 
 
 
